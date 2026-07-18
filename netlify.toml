@@ -1,0 +1,4 @@
+# Configuração de deploy do frontend na Netlify.
+[build]
+  publish = "frontend"
+  command = ""

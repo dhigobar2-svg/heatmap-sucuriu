@@ -1,0 +1,118 @@
+:root {
+  --naranjo: #EA7600;
+  --verde-sucuriu: #728046;
+  --eco-verde: #BFB800;
+  --amarelo-arauco: #F3D01C;
+  --verde-claro: #DFDB80;
+  --laranja-claro: #F4BA80;
+  --madera: #DFD1A7;
+  --corteza: #696158;
+  --branco: #FFFFFF;
+}
+
+body {
+  background: var(--branco);
+  color: var(--corteza);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Navbar - Naranjo */
+.navbar-sesmt {
+  background: var(--naranjo);
+}
+.navbar-sesmt .navbar-brand,
+.navbar-sesmt .btn-toggle-sidebar {
+  color: var(--branco);
+  font-weight: 700;
+}
+
+/* Sidebar - Verde Sucuriú */
+.sidebar {
+  background: var(--verde-sucuriu);
+  min-height: calc(100vh - 56px);
+  width: 240px;
+}
+.sidebar .nav-link {
+  color: var(--branco);
+  border-radius: 6px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sidebar .nav-link:hover {
+  background: var(--laranja-claro);
+  color: var(--corteza);
+}
+.sidebar .nav-link.active {
+  background: var(--naranjo);
+  color: var(--branco);
+  font-weight: 600;
+}
+
+/* Layout responsivo: no mobile a sidebar vira offcanvas.
+   Regra restrita ao <aside> para não afetar o offcanvas (que também usa .sidebar). */
+@media (min-width: 992px) {
+  aside.sidebar {
+    position: sticky;
+    top: 56px;
+  }
+}
+
+/* Cards - Eco Verde */
+.card-indicador {
+  background: var(--eco-verde);
+  color: var(--branco);
+  border: none;
+  border-radius: 10px;
+}
+.card-indicador .card-valor {
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.card-indicador .card-titulo {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.95;
+}
+
+/* Botões principais - Naranjo */
+.btn-sesmt {
+  background: var(--naranjo);
+  border-color: var(--naranjo);
+  color: var(--branco);
+}
+.btn-sesmt:hover {
+  background: var(--laranja-claro);
+  border-color: var(--laranja-claro);
+  color: var(--corteza);
+}
+
+.btn-outline-sesmt {
+  border-color: var(--naranjo);
+  color: var(--naranjo);
+}
+.btn-outline-sesmt:hover {
+  background: var(--laranja-claro);
+  border-color: var(--laranja-claro);
+  color: var(--corteza);
+}
+
+.section-title {
+  color: var(--verde-sucuriu);
+  font-weight: 700;
+}
+
+table thead th {
+  background: var(--madera);
+  color: var(--corteza);
+}
+
+.view {
+  display: none;
+}
+.view.active {
+  display: block;
+}
