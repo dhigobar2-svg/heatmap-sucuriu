@@ -16,12 +16,12 @@ const Dashboard = {
   },
 
   preencherIndicadores(r) {
-    // "Empresas" = EPC/EPCM + Contratos Diretos + Subcontratadas.
-    const empresas =
-      r.totalEpcEpcm + r.totalContratosDiretos + r.totalSubcontratadas;
     document.getElementById("ind-profissionais").textContent =
       r.totalProfissionais;
-    document.getElementById("ind-empresas").textContent = empresas;
+    document.getElementById("ind-epc-contrato").textContent = r.totalEpcContrato;
+    document.getElementById("ind-contratadas").textContent = r.totalContratadas;
+    document.getElementById("ind-subcontratadas").textContent =
+      r.totalSubcontratadas;
     document.getElementById("ind-ilhas").textContent = r.totalIlhas;
     document.getElementById("ind-cargos").textContent = r.totalCargos;
   },
@@ -31,7 +31,7 @@ const Dashboard = {
     const ultimos = lista.slice(0, 10);
     if (ultimos.length === 0) {
       tbody.innerHTML =
-        '<tr><td colspan="5" class="text-center text-muted">Nenhum registro.</td></tr>';
+        '<tr><td colspan="8" class="text-center text-muted">Nenhum registro.</td></tr>';
       return;
     }
     tbody.innerHTML = ultimos
@@ -41,8 +41,11 @@ const Dashboard = {
         <td>${esc(p.nome)}</td>
         <td>${esc(p.cargo)}</td>
         <td>${esc(p.epc_epcm)}</td>
+        <td>${esc(p.contratada)}</td>
+        <td>${esc(p.subcontratada)}</td>
         <td>${esc(p.ilha)}</td>
-        <td>${esc(p.situacao)}</td>
+        <td>${esc(p.efetivo)}</td>
+        <td>${esc(p.observacao)}</td>
       </tr>`
       )
       .join("");
@@ -53,19 +56,18 @@ const Dashboard = {
 
 const COLUNAS_EXPORT = [
   ["projeto", "Projeto"],
-  ["data", "Data"],
-  ["responsavel", "Responsável"],
-  ["epc_epcm", "EPC/EPCM"],
-  ["contrato_direto", "Contrato Direto"],
+  ["data", "Data de lançamento"],
+  ["responsavel", "Responsável pelo lançamento"],
+  ["epc_epcm", "EPC/EPCM ou Contrato Direto"],
+  ["contratada", "Contratada"],
   ["subcontratada", "Subcontratada"],
-  ["ilha", "Ilha"],
-  ["local", "Local"],
+  ["ilha", "Ilha/Local"],
+  ["efetivo", "Efetivo da Ilha/Local"],
   ["nome", "Nome"],
   ["cargo", "Cargo"],
   ["telefone", "Telefone"],
   ["email", "Email"],
-  ["situacao", "Situação"],
-  ["observacao", "Observação"],
+  ["observacao", "Obs."],
 ];
 
 async function comDados(fn) {

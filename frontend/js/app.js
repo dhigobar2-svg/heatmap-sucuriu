@@ -34,6 +34,20 @@ function showToast(msg, tipo = "success") {
   toastInstance.show();
 }
 
+// Campos do cabeçalho do cadastro (nome no banco).
+const CAMPOS_CABECALHO = [
+  "projeto",
+  "data",
+  "responsavel",
+  "epc_epcm",
+  "contratada",
+  "subcontratada",
+  "ilha",
+  "efetivo",
+];
+// Campos por profissional (linha da tabela dinâmica).
+const CAMPOS_PROFISSIONAL = ["nome", "cargo", "telefone", "email", "observacao"];
+
 // ===================== Navegação =====================
 
 const MENU = [
@@ -84,12 +98,11 @@ const Cadastro = {
   adicionarLinha() {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td><input class="form-control form-control-sm" data-c="nome" placeholder="Nome"></td>
+      <td><input class="form-control form-control-sm" data-c="nome" placeholder="Nome completo"></td>
       <td><input class="form-control form-control-sm" data-c="cargo" placeholder="Cargo"></td>
       <td><input class="form-control form-control-sm" data-c="telefone" placeholder="(00) 00000-0000"></td>
       <td><input class="form-control form-control-sm" data-c="email" placeholder="email@exemplo.com"></td>
-      <td><input class="form-control form-control-sm" data-c="situacao" placeholder="Situação"></td>
-      <td><input class="form-control form-control-sm" data-c="observacao" placeholder="Observação"></td>
+      <td><input class="form-control form-control-sm" data-c="observacao" placeholder="Obs."></td>
       <td class="text-center">
         <button type="button" class="btn btn-sm btn-outline-danger btn-remover-linha"><i class="bi bi-trash"></i></button>
       </td>`;
@@ -101,18 +114,8 @@ const Cadastro = {
 
   coletarCabecalho() {
     const form = document.getElementById("form-cadastro");
-    const campos = [
-      "projeto",
-      "data",
-      "responsavel",
-      "epc_epcm",
-      "contrato_direto",
-      "subcontratada",
-      "ilha",
-      "local",
-    ];
     const dados = {};
-    campos.forEach((c) => (dados[c] = limpar(form.elements[c].value)));
+    CAMPOS_CABECALHO.forEach((c) => (dados[c] = limpar(form.elements[c].value)));
     return dados;
   },
 
@@ -128,9 +131,8 @@ const Cadastro = {
 
   validar(cab, linhas) {
     if (!cab.projeto) return "Informe o Projeto.";
-    if (!cab.epc_epcm) return "Informe o EPC/EPCM.";
-    if (!cab.ilha) return "Informe a Ilha.";
-    if (!cab.local) return "Informe o Local.";
+    if (!cab.epc_epcm) return "Informe o EPC/EPCM ou Contrato Direto.";
+    if (!cab.ilha) return "Informe a Ilha/Local.";
     if (linhas.length === 0) return "Adicione ao menos um profissional.";
     for (let i = 0; i < linhas.length; i++) {
       const l = linhas[i];
@@ -179,12 +181,13 @@ const Consulta = {
         esc(p.nome),
         esc(p.cargo),
         esc(p.epc_epcm),
-        esc(p.contrato_direto),
+        esc(p.contratada),
         esc(p.subcontratada),
         esc(p.ilha),
+        esc(p.efetivo),
         esc(p.telefone),
         esc(p.email),
-        esc(p.situacao),
+        esc(p.observacao),
         `<button class="btn btn-sm btn-outline-sesmt btn-editar" data-id="${p.id}"><i class="bi bi-pencil"></i></button>
          <button class="btn btn-sm btn-outline-danger btn-excluir" data-id="${p.id}"><i class="bi bi-trash"></i></button>`,
       ]);
@@ -197,7 +200,7 @@ const Consulta = {
           language: {
             url: "https://cdn.datatables.net/plug-ins/1.13.8/i18n/pt-BR.json",
           },
-          columnDefs: [{ orderable: false, targets: 9 }],
+          columnDefs: [{ orderable: false, targets: 10 }],
         });
         // Busca instantânea via input externo.
         document
@@ -219,19 +222,18 @@ const Consulta = {
 
 const CAMPOS_EDICAO = [
   ["projeto", "Projeto"],
-  ["data", "Data", "date"],
-  ["responsavel", "Responsável"],
-  ["epc_epcm", "EPC/EPCM"],
-  ["contrato_direto", "Contrato Direto"],
+  ["data", "Data de lançamento", "date"],
+  ["responsavel", "Responsável pelo lançamento"],
+  ["epc_epcm", "EPC/EPCM ou Contrato Direto"],
+  ["contratada", "Contratada"],
   ["subcontratada", "Subcontratada"],
-  ["ilha", "Ilha"],
-  ["local", "Local"],
+  ["ilha", "Ilha/Local"],
+  ["efetivo", "Efetivo da Ilha/Local"],
   ["nome", "Nome"],
   ["cargo", "Cargo"],
   ["telefone", "Telefone"],
   ["email", "Email"],
-  ["situacao", "Situação"],
-  ["observacao", "Observação"],
+  ["observacao", "Obs."],
 ];
 
 let idParaExcluir = null;

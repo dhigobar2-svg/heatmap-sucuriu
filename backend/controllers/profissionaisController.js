@@ -1,20 +1,22 @@
 const { query } = require("../database");
 
 // Campos aceitos no corpo das requisições (na ordem de inserção).
+// epc_epcm  = "EPC/EPCM ou Contrato Direto"
+// ilha      = "Ilha/Local"
+// efetivo   = "Efetivo da Ilha/Local"
 const CAMPOS = [
   "projeto",
   "data",
   "responsavel",
   "epc_epcm",
-  "contrato_direto",
+  "contratada",
   "subcontratada",
   "ilha",
-  "local",
+  "efetivo",
   "nome",
   "cargo",
   "telefone",
   "email",
-  "situacao",
   "observacao",
 ];
 

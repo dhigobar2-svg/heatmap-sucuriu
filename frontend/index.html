@@ -65,25 +65,37 @@
         <h3 class="section-title mb-3">Dashboard</h3>
 
         <div class="row g-3 mb-4">
-          <div class="col-6 col-lg-3">
+          <div class="col-6 col-lg-4 col-xl-2">
             <div class="card card-indicador p-3">
               <div class="card-titulo">Profissionais</div>
               <div class="card-valor" id="ind-profissionais">0</div>
             </div>
           </div>
-          <div class="col-6 col-lg-3">
+          <div class="col-6 col-lg-4 col-xl-2">
             <div class="card card-indicador p-3">
-              <div class="card-titulo">Empresas</div>
-              <div class="card-valor" id="ind-empresas">0</div>
+              <div class="card-titulo">EPC/EPCM ou Contrato</div>
+              <div class="card-valor" id="ind-epc-contrato">0</div>
             </div>
           </div>
-          <div class="col-6 col-lg-3">
+          <div class="col-6 col-lg-4 col-xl-2">
             <div class="card card-indicador p-3">
-              <div class="card-titulo">Ilhas</div>
+              <div class="card-titulo">Contratadas</div>
+              <div class="card-valor" id="ind-contratadas">0</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-4 col-xl-2">
+            <div class="card card-indicador p-3">
+              <div class="card-titulo">Subcontratadas</div>
+              <div class="card-valor" id="ind-subcontratadas">0</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-4 col-xl-2">
+            <div class="card card-indicador p-3">
+              <div class="card-titulo">Ilhas/Locais</div>
               <div class="card-valor" id="ind-ilhas">0</div>
             </div>
           </div>
-          <div class="col-6 col-lg-3">
+          <div class="col-6 col-lg-4 col-xl-2">
             <div class="card card-indicador p-3">
               <div class="card-titulo">Cargos</div>
               <div class="card-valor" id="ind-cargos">0</div>
@@ -108,18 +120,21 @@
 
         <h5 class="section-title mb-2">Últimos registros</h5>
         <div class="table-responsive">
-          <table class="table table-sm table-hover align-middle">
+          <table class="table table-hover align-middle tabela-espacada">
             <thead>
               <tr>
                 <th>Nome</th>
                 <th>Cargo</th>
-                <th>EPC/EPCM</th>
-                <th>Ilha</th>
-                <th>Situação</th>
+                <th>EPC/EPCM ou Contrato Direto</th>
+                <th>Contratada</th>
+                <th>Subcontratada</th>
+                <th>Ilha/Local</th>
+                <th>Efetivo da Ilha/Local</th>
+                <th>Obs.</th>
               </tr>
             </thead>
             <tbody id="dash-tbody">
-              <tr><td colspan="5" class="text-center text-muted">Carregando...</td></tr>
+              <tr><td colspan="8" class="text-center text-muted">Carregando...</td></tr>
             </tbody>
           </table>
         </div>
@@ -131,37 +146,37 @@
 
         <form id="form-cadastro" novalidate>
           <div class="row g-3 mb-3">
-            <div class="col-md-4">
+            <div class="col-md-6 col-lg-3">
               <label class="form-label">Projeto *</label>
               <input type="text" class="form-control" name="projeto" placeholder="Nome do projeto" required />
             </div>
-            <div class="col-md-4">
-              <label class="form-label">Data</label>
+            <div class="col-md-6 col-lg-3">
+              <label class="form-label">Data de lançamento</label>
               <input type="date" class="form-control" name="data" />
             </div>
-            <div class="col-md-4">
-              <label class="form-label">Responsável</label>
-              <input type="text" class="form-control" name="responsavel" placeholder="Nome do responsável" />
+            <div class="col-md-6 col-lg-3">
+              <label class="form-label">Responsável pelo lançamento</label>
+              <input type="text" class="form-control" name="responsavel" placeholder="Responsável" />
             </div>
-            <div class="col-md-4">
-              <label class="form-label">EPC/EPCM *</label>
-              <input type="text" class="form-control" name="epc_epcm" placeholder="EPC ou EPCM" required />
+            <div class="col-md-6 col-lg-3">
+              <label class="form-label">EPC/EPCM ou Contrato Direto *</label>
+              <input type="text" class="form-control" name="epc_epcm" placeholder="EPC/EPCM ou Contrato Direto" required />
             </div>
-            <div class="col-md-4">
-              <label class="form-label">Contrato Direto</label>
-              <input type="text" class="form-control" name="contrato_direto" placeholder="Contrato direto" />
+            <div class="col-md-6 col-lg-3">
+              <label class="form-label">Contratada</label>
+              <input type="text" class="form-control" name="contratada" placeholder="Contratada" />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6 col-lg-3">
               <label class="form-label">Subcontratada</label>
               <input type="text" class="form-control" name="subcontratada" placeholder="Subcontratada" />
             </div>
-            <div class="col-md-4">
-              <label class="form-label">Ilha *</label>
-              <input type="text" class="form-control" name="ilha" placeholder="Ilha" required />
+            <div class="col-md-6 col-lg-3">
+              <label class="form-label">Ilha/Local *</label>
+              <input type="text" class="form-control" name="ilha" placeholder="Ilha/Local" required />
             </div>
-            <div class="col-md-4">
-              <label class="form-label">Local *</label>
-              <input type="text" class="form-control" name="local" placeholder="Local" required />
+            <div class="col-md-6 col-lg-3">
+              <label class="form-label">Efetivo da Ilha/Local</label>
+              <input type="text" class="form-control" name="efetivo" placeholder="Efetivo da Ilha/Local" />
             </div>
           </div>
 
@@ -173,12 +188,11 @@
             <table class="table table-bordered align-middle">
               <thead>
                 <tr>
-                  <th>Nome *</th>
-                  <th>Cargo *</th>
-                  <th>Telefone *</th>
-                  <th>Email *</th>
-                  <th>Situação</th>
-                  <th>Observação</th>
+                  <th style="min-width: 260px">Nome *</th>
+                  <th style="min-width: 150px">Cargo *</th>
+                  <th style="min-width: 150px">Telefone *</th>
+                  <th style="min-width: 200px">Email *</th>
+                  <th style="min-width: 180px">Obs.</th>
                   <th style="width: 60px">Ações</th>
                 </tr>
               </thead>
@@ -207,23 +221,24 @@
             type="text"
             id="busca-consulta"
             class="form-control"
-            placeholder="Pesquisar por nome, EPC/EPCM, contrato, subcontratada, ilha ou cargo..."
+            placeholder="Pesquisar por nome, EPC/EPCM ou Contrato, Contratada, Subcontratada, Ilha/Local ou Cargo..."
           />
         </div>
 
         <div class="table-responsive">
-          <table id="tabela-consulta" class="table table-striped table-hover align-middle w-100">
+          <table id="tabela-consulta" class="table table-striped table-hover align-middle tabela-espacada w-100">
             <thead>
               <tr>
                 <th>Nome</th>
                 <th>Cargo</th>
-                <th>EPC/EPCM</th>
-                <th>Contrato Direto</th>
+                <th>EPC/EPCM ou Contrato</th>
+                <th>Contratada</th>
                 <th>Subcontratada</th>
-                <th>Ilha</th>
+                <th>Ilha/Local</th>
+                <th>Efetivo</th>
                 <th>Telefone</th>
                 <th>Email</th>
-                <th>Situação</th>
+                <th>Obs.</th>
                 <th>Ações</th>
               </tr>
             </thead>
