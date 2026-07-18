@@ -116,3 +116,13 @@ table thead th {
 .view.active {
   display: block;
 }
+
+/* Tabelas com espaçamento maior para leitura confortável */
+.tabela-espacada th,
+.tabela-espacada td {
+  padding: 0.65rem 0.9rem;
+  white-space: nowrap;
+}
+.tabela-espacada td {
+  vertical-align: middle;
+}
